@@ -22,7 +22,11 @@ class Main extends Application {
 		super();
 	}
 
-	private var savedNames = new ArrayCollection<NameVO>();
+	private var savedNames:ArrayCollection<NameVO>;
+
+	private var filterForm:LayoutGroup;
+	private var filterLabel:Label;
+	private var filterInput:TextInput;
 
 	private var middleContainer:LayoutGroup;
 	private var namesListBox:ListBox;
@@ -41,6 +45,11 @@ class Main extends Application {
 	override private function initialize():Void {
 		super.initialize();
 
+		// a list of saved names, with filtering
+		this.savedNames = new ArrayCollection();
+		this.savedNames.filterFunction = this.namesListBox_filterFunction;
+
+		// the main layout consists of three sections, stacked vertically
 		var layout = new VerticalLayout();
 		layout.paddingTop = 10.0;
 		layout.paddingRight = 10.0;
@@ -49,6 +58,42 @@ class Main extends Application {
 		layout.gap = 6.0;
 		this.layout = layout;
 
+		// the top section is a form containing a text input to filter items
+		// in the list of names
+		this.createFilterForm();
+
+		// the middle section contains a list of names on the left and two
+		// text inputs on the right to edit the first and last name
+		this.createMiddleSection();
+
+		// the bottom section contains some buttons to perform various actions
+		// on the list of names
+		this.createButtons();
+
+		// let's get things started by setting up the initial enabled state
+		// of various components
+		this.refreshNameForm();
+		this.refreshButtons();
+	}
+
+	private function createFilterForm():Void {
+		var filterFormLayout = new HorizontalLayout();
+		filterFormLayout.gap = 6.0;
+
+		this.filterForm = new LayoutGroup();
+		this.filterForm.layout = filterFormLayout;
+		this.addChild(this.filterForm);
+
+		this.filterLabel = new Label();
+		this.filterLabel.text = "Filter surname:";
+		this.filterForm.addChild(this.filterLabel);
+
+		this.filterInput = new TextInput();
+		this.filterInput.addEventListener(Event.CHANGE, filterInput_changeHandler);
+		this.filterForm.addChild(this.filterInput);
+	}
+
+	private function createMiddleSection():Void {
 		var middleLayout = new HorizontalLayout();
 		middleLayout.gap = 6.0;
 		this.middleContainer = new LayoutGroup();
@@ -61,9 +106,6 @@ class Main extends Application {
 		this.middleContainer.addChild(this.namesListBox);
 
 		this.createNameForm();
-		this.createButtons();
-
-		this.refreshNameForm();
 	}
 
 	private function createNameForm():Void {
@@ -144,9 +186,21 @@ class Main extends Application {
 		}
 	}
 
+	private function namesListBox_filterFunction(item:NameVO):Bool {
+		var filterText = this.filterInput.text.toLowerCase();
+		if (filterText.length > 0) {
+			return item.surname.toLowerCase().indexOf(filterText) == 0;
+		}
+		return true;
+	}
+
 	private function namesListBox_changeHandler(event:Event):Void {
 		this.refreshNameForm();
 		this.refreshButtons();
+	}
+
+	private function filterInput_changeHandler(event:Event):Void {
+		this.namesListBox.dataProvider.refresh();
 	}
 
 	private function nameInput_changeHandler(event:Event):Void {
@@ -168,7 +222,7 @@ class Main extends Application {
 
 	private function updateButton_triggeredHandler(event:FeathersEvent):Void {
 		var newItem = new NameVO(this.nameInput.text, this.surnameInput.text);
-		this.savedNames.set(newItem, this.namesListBox.selectedIndex);
+		this.savedNames.set(this.namesListBox.selectedIndex, newItem);
 	}
 
 	private function deleteButton_triggeredHandler(event:FeathersEvent):Void {
@@ -184,6 +238,9 @@ class NameVO {
 
 	public var name:String;
 	public var surname:String;
+
+	// since we don't call toString() directly, dce might decide to remove it,
+	// but we want to keep it to display the name correctly in the list box
 
 	@:keep
 	public function toString():String {

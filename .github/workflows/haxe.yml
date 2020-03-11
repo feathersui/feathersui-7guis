@@ -18,6 +18,7 @@ jobs:
         haxelib setup $GITHUB_WORKSPACE/.haxelib
     - name: Set up Dependencies
       run: |
+        haxelib install lime --quiet
         haxelib install openfl --quiet
         haxelib install actuate --quiet
         haxelib install feathersui --quiet

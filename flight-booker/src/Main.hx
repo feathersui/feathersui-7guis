@@ -5,6 +5,10 @@
 	accordance with the terms of the accompanying license agreement.
  */
 
+import feathers.core.PopUpManager;
+import feathers.controls.Panel;
+import feathers.controls.Label;
+import feathers.controls.LayoutGroup;
 import feathers.controls.Application;
 import feathers.controls.Button;
 import feathers.controls.PopUpListView;
@@ -105,6 +109,36 @@ class Main extends Application {
 		if (this.returnInput.enabled) {
 			message += ' and returning on ${this.returnInput.text}';
 		}
-		trace(message);
+
+		var alert = new Panel();
+		var layout = new VerticalLayout();
+		layout.paddingTop = 10.0;
+		layout.paddingRight = 10.0;
+		layout.paddingBottom = 10.0;
+		layout.paddingLeft = 10.0;
+		layout.gap = 10.0;
+		layout.horizontalAlign = CENTER;
+		alert.layout = layout;
+
+		var header = new LayoutGroup();
+		header.variant = LayoutGroup.VARIANT_TOOL_BAR;
+		var title = new Label();
+		title.variant = Label.VARIANT_HEADING;
+		title.text = "Confirmation";
+		header.addChild(title);
+		alert.header = header;
+
+		var label = new Label();
+		label.text = message;
+		alert.addChild(label);
+
+		var closeButton = new Button();
+		closeButton.text = "OK";
+		closeButton.addEventListener(TriggerEvent.TRIGGER, (event) -> {
+			PopUpManager.removePopUp(alert);
+		});
+		alert.addChild(closeButton);
+
+		PopUpManager.addPopUp(alert, this);
 	}
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<meta title="CRUD" package="com.feathersui.7guis.crud" version="1.0.0" company="Bowler Hat LLC"/>
-	<app main="Main" path="build" file="Main"/>
+	<app main="Main" path="build" file="CRUD"/>
 
 	<window allow-high-dpi="true"/>
 	<window fps="60"/>

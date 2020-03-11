@@ -1,0 +1,53 @@
+name: Haxe CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Set up Haxe
+      run: |
+        sudo add-apt-repository ppa:haxe/releases -y
+        sudo apt-get update
+        sudo apt-get install haxe -y
+        mkdir $GITHUB_WORKSPACE/.haxelib
+        haxelib setup $GITHUB_WORKSPACE/.haxelib
+    - name: Set up Dependencies
+      run: |
+        haxelib install openfl --quiet
+        haxelib install actuate --quiet
+        haxelib install feathersui --quiet
+    - name: Build counter
+      working-directory: counter
+      run: |
+        haxelib run openfl build neko
+        haxelib run openfl build html5
+        haxelib run openfl build flash
+    - name: Build crud
+      working-directory: crud
+      run: |
+        haxelib run openfl build neko
+        haxelib run openfl build html5
+        haxelib run openfl build flash
+    - name: Build flight-booker
+      working-directory: flight-booker
+      run: |
+        haxelib run openfl build neko
+        haxelib run openfl build html5
+        haxelib run openfl build flash
+    - name: Build temperature-converter
+      working-directory: temperature-converter
+      run: |
+        haxelib run openfl build neko
+        haxelib run openfl build html5
+        haxelib run openfl build flash
+    - name: Build timer
+      working-directory: timer
+      run: |
+        haxelib run openfl build neko
+        haxelib run openfl build html5
+        haxelib run openfl build flash

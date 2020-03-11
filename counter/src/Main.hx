@@ -1,15 +1,15 @@
 /*
-	Copyright 2019 Bowler Hat LLC. All Rights Reserved.
+	Copyright 2020 Bowler Hat LLC. All Rights Reserved.
 
 	This program is free software. You can redistribute and/or modify it in
 	accordance with the terms of the accompanying license agreement.
  */
 
-import feathers.layout.HorizontalLayout;
-import feathers.events.FeathersEvent;
+import feathers.controls.Application;
 import feathers.controls.Button;
 import feathers.controls.Label;
-import feathers.controls.Application;
+import feathers.events.TriggerEvent;
+import feathers.layout.HorizontalLayout;
 
 class Main extends Application {
 	public function new() {
@@ -39,11 +39,11 @@ class Main extends Application {
 
 		this.button = new Button();
 		this.button.text = "Count";
-		this.button.addEventListener(FeathersEvent.TRIGGERED, button_triggeredHandler);
+		this.button.addEventListener(TriggerEvent.TRIGGER, button_triggerHandler);
 		this.addChild(this.button);
 	}
 
-	private function button_triggeredHandler(event:FeathersEvent):Void {
+	private function button_triggerHandler(event:TriggerEvent):Void {
 		this.count++;
 		this.label.text = Std.string(this.count);
 	}

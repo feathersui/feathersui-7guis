@@ -1,20 +1,20 @@
 /*
-	Copyright 2019 Bowler Hat LLC. All Rights Reserved.
+	Copyright 2020 Bowler Hat LLC. All Rights Reserved.
 
 	This program is free software. You can redistribute and/or modify it in
 	accordance with the terms of the accompanying license agreement.
  */
 
-import feathers.controls.dataRenderers.ItemRenderer;
-import feathers.data.ListBoxItemState;
-import feathers.data.ArrayCollection;
-import feathers.events.FeathersEvent;
-import feathers.controls.Button;
-import feathers.controls.PopUpList;
-import openfl.events.Event;
-import feathers.layout.VerticalLayout;
-import feathers.controls.TextInput;
 import feathers.controls.Application;
+import feathers.controls.Button;
+import feathers.controls.PopUpListView;
+import feathers.controls.TextInput;
+import feathers.controls.dataRenderers.ItemRenderer;
+import feathers.data.ArrayCollection;
+import feathers.data.ListViewItemState;
+import feathers.events.TriggerEvent;
+import feathers.layout.VerticalLayout;
+import openfl.events.Event;
 
 class Main extends Application {
 	private static final DATE_VALIDATOR = ~/^\d{4}.\d{2}\.\d{2}$/;
@@ -27,7 +27,7 @@ class Main extends Application {
 		super();
 	}
 
-	private var flightTypeList:PopUpList;
+	private var flightTypeList:PopUpListView;
 	private var departInput:TextInput;
 	private var returnInput:TextInput;
 	private var bookButton:Button;
@@ -43,11 +43,11 @@ class Main extends Application {
 		layout.gap = 6.0;
 		this.layout = layout;
 
-		this.flightTypeList = new PopUpList();
+		this.flightTypeList = new PopUpListView();
 		this.flightTypeList.dataProvider = new ArrayCollection([{text: "one-way flight"}, {text: "round-trip flight"}]);
 		this.flightTypeList.selectedIndex = 0;
-		this.flightTypeList.updateItemRenderer = (itemRenderer:ItemRenderer, state:ListBoxItemState) -> {
-			itemRenderer.text = state.data.text;
+		this.flightTypeList.itemToText = (item) -> {
+			return item.text;
 		};
 		this.flightTypeList.addEventListener(Event.CHANGE, flightTypeList_changeHandler);
 		this.addChild(this.flightTypeList);
@@ -70,7 +70,7 @@ class Main extends Application {
 
 		this.bookButton = new Button();
 		this.bookButton.text = "Book";
-		this.bookButton.addEventListener(FeathersEvent.TRIGGERED, bookButton_triggeredHandler);
+		this.bookButton.addEventListener(TriggerEvent.TRIGGER, bookButton_triggerHandler);
 		this.addChild(this.bookButton);
 
 		this.refreshAll();
@@ -99,7 +99,7 @@ class Main extends Application {
 		this.refreshAll();
 	}
 
-	private function bookButton_triggeredHandler(event:Event):Void {
+	private function bookButton_triggerHandler(event:TriggerEvent):Void {
 		var flightType:String = this.flightTypeList.selectedItem.text;
 		var message = 'You have booked a ${flightType} departing on ${this.departInput.text}';
 		if (this.returnInput.enabled) {

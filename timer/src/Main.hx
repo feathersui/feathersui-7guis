@@ -1,19 +1,19 @@
 /*
-	Copyright 2019 Bowler Hat LLC. All Rights Reserved.
+	Copyright 2020 Bowler Hat LLC. All Rights Reserved.
 
 	This program is free software. You can redistribute and/or modify it in
 	accordance with the terms of the accompanying license agreement.
  */
 
-import openfl.events.Event;
-import feathers.layout.VerticalLayout;
-import openfl.Lib;
+import feathers.controls.Application;
+import feathers.controls.Button;
 import feathers.controls.HProgressBar;
 import feathers.controls.HSlider;
-import feathers.events.FeathersEvent;
-import feathers.controls.Button;
 import feathers.controls.Label;
-import feathers.controls.Application;
+import feathers.events.TriggerEvent;
+import feathers.layout.VerticalLayout;
+import openfl.Lib;
+import openfl.events.Event;
 
 class Main extends Application {
 	public function new() {
@@ -60,7 +60,7 @@ class Main extends Application {
 
 		this.resetButton = new Button();
 		this.resetButton.text = "Reset";
-		this.resetButton.addEventListener(FeathersEvent.TRIGGERED, resetButton_triggeredHandler);
+		this.resetButton.addEventListener(TriggerEvent.TRIGGER, resetButton_triggerHandler);
 		this.addChild(this.resetButton);
 
 		this.refreshAll();
@@ -107,7 +107,7 @@ class Main extends Application {
 		this.refreshAll();
 	}
 
-	private function resetButton_triggeredHandler(event:FeathersEvent):Void {
+	private function resetButton_triggerHandler(event:TriggerEvent):Void {
 		this.elapsedTime = 0.0;
 		this.startTime = Lib.getTimer() / 1000.0;
 

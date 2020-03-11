@@ -1,15 +1,15 @@
 /*
-	Copyright 2019 Bowler Hat LLC. All Rights Reserved.
+	Copyright 2020 Bowler Hat LLC. All Rights Reserved.
 
 	This program is free software. You can redistribute and/or modify it in
 	accordance with the terms of the accompanying license agreement.
  */
 
-import openfl.events.Event;
-import feathers.layout.HorizontalLayout;
-import feathers.controls.TextInput;
-import feathers.controls.Label;
 import feathers.controls.Application;
+import feathers.controls.Label;
+import feathers.controls.TextInput;
+import feathers.layout.HorizontalLayout;
+import openfl.events.Event;
 
 class Main extends Application {
 	public function new() {

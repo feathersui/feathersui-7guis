@@ -31,4 +31,4 @@ Check out the following tutorials for creating Feathers UI projects in popular d
 
 - [HaxeDevelop](https://feathersui.com/learn/haxe-openfl/haxedevelop/)
 - [Moonshine IDE](https://feathersui.com/learn/haxe-openfl/moonshine-ide/)
-- [Visual Studio Code](https://feathersui.com/learn/haxe-openfl/visual-studio-c
+- [Visual Studio Code](https://feathersui.com/learn/haxe-openfl/visual-studio-code/)

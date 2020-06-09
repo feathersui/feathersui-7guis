@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<meta title="Timer" package="com.feathersui.7guis.timer" version="1.0.0" company="Bowler Hat LLC"/>
-	<app main="Main" path="build" file="Timer"/>
+	<app main="Main" file="Timer"/>
 
 	<window allow-high-dpi="true"/>
 	<window fps="60"/>

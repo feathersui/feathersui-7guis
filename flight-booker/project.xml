@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project>
 	<meta title="Flight Booker" package="com.feathersui.7guis.flightBooker" version="1.0.0" company="Bowler Hat LLC"/>
-	<app main="Main" path="build" file="FlightBooker"/>
+	<app main="Main" file="FlightBooker"/>
 
 	<window allow-high-dpi="true"/>
 	<window fps="60"/>

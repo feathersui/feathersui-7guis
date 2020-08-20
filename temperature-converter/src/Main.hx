@@ -5,6 +5,7 @@
 	accordance with the terms of the accompanying license agreement.
  */
 
+import feathers.controls.LayoutGroup;
 import feathers.controls.Application;
 import feathers.controls.Label;
 import feathers.controls.TextInput;
@@ -27,33 +28,36 @@ class Main extends Application {
 	override private function initialize():Void {
 		super.initialize();
 
+		var container = new LayoutGroup();
 		var layout = new HorizontalLayout();
 		layout.paddingTop = 10.0;
 		layout.paddingRight = 10.0;
 		layout.paddingBottom = 10.0;
 		layout.paddingLeft = 10.0;
 		layout.gap = 6.0;
-		this.layout = layout;
+		layout.verticalAlign = MIDDLE;
+		container.layout = layout;
+		this.addChild(container);
 
 		this.celciusInput = new TextInput();
 		this.celciusInput.restrict = "0-9";
 		this.celciusInput.text = Std.string(this.celcius);
 		this.celciusInput.addEventListener(Event.CHANGE, celciusInput_changeHandler);
-		this.addChild(this.celciusInput);
+		container.addChild(this.celciusInput);
 
 		this.celciusLabel = new Label();
 		this.celciusLabel.text = "Celcius = ";
-		this.addChild(this.celciusLabel);
+		container.addChild(this.celciusLabel);
 
 		this.fahrenheitInput = new TextInput();
 		this.fahrenheitInput.restrict = "0-9";
 		this.fahrenheitInput.text = Std.string(this.fahrenheit);
 		this.fahrenheitInput.addEventListener(Event.CHANGE, fahrenheitInput_changeHandler);
-		this.addChild(this.fahrenheitInput);
+		container.addChild(this.fahrenheitInput);
 
 		this.fahrenheitLabel = new Label();
 		this.fahrenheitLabel.text = "Fahrenheit";
-		this.addChild(this.fahrenheitLabel);
+		container.addChild(this.fahrenheitLabel);
 	}
 
 	private var _ignoreCelciusChange = false;

@@ -1,0 +1,9 @@
+-cmd haxelib run openfl build counter/project.xml html5 -final -clean --haxedef=feathersui.com
+--next
+-cmd haxelib run openfl build crud/project.xml html5 -final -clean --haxedef=feathersui.com
+--next
+-cmd haxelib run openfl build flight-booker/project.xml html5 -final -clean --haxedef=feathersui.com
+--next
+-cmd haxelib run openfl build temperature-converter/project.xml html5 -final -clean --haxedef=feathersui.com
+--next
+-cmd haxelib run openfl build timer/project.xml html5 -final -clean --haxedef=feathersui.com

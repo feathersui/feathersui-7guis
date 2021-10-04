@@ -79,6 +79,7 @@ class Main extends Application {
 	private function createFilterForm():Void {
 		var filterFormLayout = new HorizontalLayout();
 		filterFormLayout.gap = 6.0;
+		filterFormLayout.verticalAlign = MIDDLE;
 
 		this.filterForm = new LayoutGroup();
 		this.filterForm.layout = filterFormLayout;
@@ -101,6 +102,8 @@ class Main extends Application {
 		this.addChild(this.middleContainer);
 
 		this.namesListView = new ListView();
+		this.namesListView.width = 160.0;
+		this.namesListView.height = 160.0;
 		this.namesListView.dataProvider = savedNames;
 		this.namesListView.addEventListener(Event.CHANGE, namesListView_changeHandler);
 		this.middleContainer.addChild(this.namesListView);
@@ -118,6 +121,7 @@ class Main extends Application {
 
 		var nameFieldLayout = new HorizontalLayout();
 		nameFieldLayout.gap = 6.0;
+		nameFieldLayout.verticalAlign = MIDDLE;
 		var nameField = new LayoutGroup();
 		nameField.layout = nameFieldLayout;
 		this.nameForm.addChild(nameField);
@@ -132,6 +136,7 @@ class Main extends Application {
 
 		var sunameFieldLayout = new HorizontalLayout();
 		sunameFieldLayout.gap = 6.0;
+		sunameFieldLayout.verticalAlign = MIDDLE;
 		var surnameField = new LayoutGroup();
 		surnameField.layout = sunameFieldLayout;
 		this.nameForm.addChild(surnameField);

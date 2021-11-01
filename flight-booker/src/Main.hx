@@ -78,7 +78,7 @@ class Main extends Application {
 
 		var now = Date.now();
 		var year = now.getFullYear();
-		var month = now.getMonth();
+		var month = now.getMonth() + 1;
 		var date = now.getDate();
 		var nowString = year + "." + StringTools.lpad(Std.string(month), "0", 2) + "." + StringTools.lpad(Std.string(date), "0", 2);
 

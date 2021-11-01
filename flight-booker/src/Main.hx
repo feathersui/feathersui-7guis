@@ -21,7 +21,7 @@ import feathers.layout.VerticalLayout;
 import openfl.events.Event;
 
 class Main extends Application {
-	private static final DATE_VALIDATOR = ~/^\d{4}.\d{2}\.\d{2}$/;
+	private static final DATE_VALIDATOR = ~/^\d{4}\.\d{2}\.\d{2}$/;
 
 	private static function validateDateString(value:String):Bool {
 		return DATE_VALIDATOR.match(value);

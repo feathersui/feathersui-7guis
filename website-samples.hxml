@@ -1,3 +1,5 @@
+-cmd haxelib run openfl build circle-drawer/project.xml html5 -final -clean --haxedef=feathersui.com
+--next
 -cmd haxelib run openfl build counter/project.xml html5 -final -clean --haxedef=feathersui.com
 --next
 -cmd haxelib run openfl build crud/project.xml html5 -final -clean --haxedef=feathersui.com

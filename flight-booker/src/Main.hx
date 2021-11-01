@@ -1,21 +1,19 @@
 /*
-	Copyright 2020 Bowler Hat LLC. All Rights Reserved.
+	Copyright 2021 Bowler Hat LLC. All Rights Reserved.
 
 	This program is free software. You can redistribute and/or modify it in
 	accordance with the terms of the accompanying license agreement.
  */
 
-import feathers.core.PopUpManager;
-import feathers.controls.Panel;
-import feathers.controls.Label;
-import feathers.controls.LayoutGroup;
 import feathers.controls.Application;
 import feathers.controls.Button;
+import feathers.controls.Label;
+import feathers.controls.LayoutGroup;
+import feathers.controls.Panel;
 import feathers.controls.PopUpListView;
 import feathers.controls.TextInput;
-import feathers.controls.dataRenderers.ItemRenderer;
+import feathers.core.PopUpManager;
 import feathers.data.ArrayCollection;
-import feathers.data.ListViewItemState;
 import feathers.events.TriggerEvent;
 import feathers.layout.VerticalLayout;
 import openfl.events.Event;

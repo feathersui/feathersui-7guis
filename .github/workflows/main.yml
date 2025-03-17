@@ -1,4 +1,4 @@
-name: Haxe CI
+name: CI
 
 on:
   push:
@@ -7,48 +7,58 @@ on:
       - master
 
 jobs:
-  build:
-
+  build-misc:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: krdlab/setup-haxe@v1
       with:
-        haxe-version: 4.1.2
+        haxe-version: 4.2.5
     - name: Set up Dependencies
       run: |
         haxelib install lime --quiet
         haxelib install openfl --quiet
         haxelib install actuate --quiet
         haxelib install feathersui --quiet
+    - name: Build circle-drawer
+      working-directory: circle-drawer
+      run: |
+        haxelib run openfl build neko
+        haxelib run openfl build html5
+        haxelib run openfl build flash
+        haxelib run openfl build hl
     - name: Build counter
       working-directory: counter
       run: |
         haxelib run openfl build neko
         haxelib run openfl build html5
         haxelib run openfl build flash
+        haxelib run openfl build hl
     - name: Build crud
       working-directory: crud
       run: |
         haxelib run openfl build neko
         haxelib run openfl build html5
         haxelib run openfl build flash
+        haxelib run openfl build hl
     - name: Build flight-booker
       working-directory: flight-booker
       run: |
         haxelib run openfl build neko
         haxelib run openfl build html5
         haxelib run openfl build flash
+        haxelib run openfl build hl
     - name: Build temperature-converter
       working-directory: temperature-converter
       run: |
         haxelib run openfl build neko
         haxelib run openfl build html5
         haxelib run openfl build flash
+        haxelib run openfl build hl
     - name: Build timer
       working-directory: timer
       run: |
         haxelib run openfl build neko
         haxelib run openfl build html5
         haxelib run openfl build flash
+        haxelib run openfl build hl
